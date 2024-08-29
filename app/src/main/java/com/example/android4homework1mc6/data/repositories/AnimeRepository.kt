@@ -14,5 +14,5 @@ class AnimeRepository
 
     fun getAnime() = fetchData { AnimePagingSource(kitsuApiService) }
 
-    fun getAnimeById(id: Int) = getAnimeById { detailApiService.getAnimeById(id) }
+    fun getAnimeById(id: Int) = getAnimeById { detailApiService.getAnimeById(id).data }
 }

@@ -12,5 +12,5 @@ class MangaRepository @Inject constructor(
 ) : BaseRepository() {
     fun getManga() = fetchData { MangaPagingSource(kitsuApiService) }
 
-    fun getMangaById(id: Int) = getAnimeById { detailApiService.getMangaBYId(id) }
+    fun getMangaById(id: Int) = getAnimeById { detailApiService.getMangaBYId(id).data }
 }
