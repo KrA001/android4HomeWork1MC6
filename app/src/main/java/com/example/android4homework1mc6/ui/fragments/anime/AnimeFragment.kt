@@ -37,7 +37,7 @@ class AnimeFragment : Fragment(R.layout.fragment_anime) {
         animeLaunch()
 
     }
-    
+
     private fun animeLaunch() = with(binding) {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

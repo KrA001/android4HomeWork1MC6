@@ -30,7 +30,7 @@ class MangaFragment : Fragment(R.layout.fragment_manga) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize()
-        subscribe()
+//        subscribe()
         mangaLaunch()
 
     }
@@ -51,13 +51,13 @@ class MangaFragment : Fragment(R.layout.fragment_manga) {
 
     }
 
-    private fun subscribe() {
-        viewModels.getManga().observe(viewLifecycleOwner) {
-            viewLifecycleOwner.lifecycleScope.launch {
-                mangaAdapter.submitData(it)
-            }
-        }
-    }
+//    private fun subscribe() {
+//        viewModels.getManga().observe(viewLifecycleOwner) {
+//            viewLifecycleOwner.lifecycleScope.launch {
+//                mangaAdapter.submitData(it)
+//            }
+//        }
+//    }
 
     private fun onItemClick(id: String) {
         findNavController().navigate(
