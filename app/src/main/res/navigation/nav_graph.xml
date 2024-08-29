@@ -3,24 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/viewPagerFragment2">
+    app:startDestination="@id/viewPagerFragment">
 
 
     <fragment
-        android:id="@+id/viewPagerFragment2"
+        android:id="@+id/viewPagerFragment"
         android:name="com.example.android4homework1mc6.ui.fragments.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager">
+        tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment2_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_viewPagerFragment_to_detailFragment2"
+            app:destination="@id/detailFragment2" />
     </fragment>
-
     <fragment
-        android:id="@+id/detailFragment"
+        android:id="@+id/detailFragment2"
         android:name="com.example.android4homework1mc6.ui.fragments.detail.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
+
         <argument
             android:name="id"
             app:argType="string"

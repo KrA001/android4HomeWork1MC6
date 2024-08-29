@@ -28,7 +28,6 @@ class AnimeAdapter(private val onItemClick: (id: String) -> Unit) :
                 .load(animeData.attributes.posterImage.original)
                 .into(ivImage)
             titleTextView.text = animeData.attributes.titles.en
-
         }
     }
 
