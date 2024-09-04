@@ -10,6 +10,7 @@ import com.example.android4homework1mc6.data.repositories.AnimeRepository
 import com.example.android4homework1mc6.data.repositories.MangaRepository
 import com.example.android4homework1mc6.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
