@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.android4homework1mc6.data.remote.models.DataItem
 import com.example.android4homework1mc6.databinding.ItemAnimeBinding
 
 class MangaAdapter(private val onItemClick: (id: String) -> Unit) :
-    PagingDataAdapter<DataItem, MangaAdapter.MangaViewHolder>(DiffUtilCallback()) {
+    ListAdapter<DataItem, MangaAdapter.MangaViewHolder>(DiffUtilCallback()) {
 
     inner class MangaViewHolder(private val binding: ItemAnimeBinding) :
         RecyclerView.ViewHolder(binding.root) {

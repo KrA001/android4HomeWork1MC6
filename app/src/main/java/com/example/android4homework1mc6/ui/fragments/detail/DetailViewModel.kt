@@ -10,6 +10,7 @@ import com.example.android4homework1mc6.data.repositories.AnimeRepository
 import com.example.android4homework1mc6.data.repositories.MangaRepository
 import com.example.android4homework1mc6.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,29 +36,25 @@ class DetailViewModel @Inject constructor(
     }
 
     private fun getAnimeById() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             id?.let {
-                animeRepository.getAnimeById(id.toInt())
-                    .catch {
-                        _detailState.value = UiState.Error(it, it.message ?: "Unknown error")
-                    }
-                    .collect {
-                        _detailState.value = UiState.Success(it)
-                    }
+                animeRepository.getAnimeById(
+                    id = id.toInt(),
+                    onSuccess = { _detailState.value = UiState.Success() },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                )
             }
         }
     }
 
     private fun getMangaById() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             id?.let {
-                mangaRepository.getMangaById(id.toInt())
-                    .catch {
-                        _detailState.value = UiState.Error(it, it.message ?: "Unknown error")
-                    }
-                    .collect {
-                        _detailState.value = UiState.Success(it)
-                    }
+                mangaRepository.getMangaById(
+                    id = id.toInt(),
+                    onSuccess = { _detailState.value = UiState.Success() },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                )
             }
         }
     }
