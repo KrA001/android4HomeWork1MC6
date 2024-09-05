@@ -36,29 +36,25 @@ class DetailViewModel @Inject constructor(
     }
 
     private fun getAnimeById() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             id?.let {
-                animeRepository.getAnimeById(id.toInt())
-                    .catch {
-                        _detailState.value = UiState.Error(it, it.message ?: "Unknown error")
-                    }
-                    .collect {
-                        _detailState.value = UiState.Success(it)
-                    }
+                animeRepository.getAnimeById(
+                    id = id.toInt(),
+                    onSuccess = { _detailState.value = UiState.Success() },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                )
             }
         }
     }
 
     private fun getMangaById() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             id?.let {
-                mangaRepository.getMangaById(id.toInt())
-                    .catch {
-                        _detailState.value = UiState.Error(it, it.message ?: "Unknown error")
-                    }
-                    .collect {
-                        _detailState.value = UiState.Success(it)
-                    }
+                mangaRepository.getMangaById(
+                    id = id.toInt(),
+                    onSuccess = { _detailState.value = UiState.Success() },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                )
             }
         }
     }

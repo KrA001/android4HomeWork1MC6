@@ -17,5 +17,5 @@ interface DetailApiService {
     @GET(DETAIL_END_POINT_MANGA)
     fun getMangaBYId(
         @Path("id") id: Int
-    ): DetailResponse
+    ): Call<DetailResponse>
 }

@@ -14,8 +14,5 @@ interface KitsuApiService {
     fun getAnime(): Call<KitsuResponse>
 
     @GET(MANGA_END_POINT)
-    suspend fun getManga(
-        @Query("page[limit]") limit: Int,
-        @Query("page[offset]") offset: Int
-    ): KitsuResponse
+    fun getManga(): Call<KitsuResponse>
 }

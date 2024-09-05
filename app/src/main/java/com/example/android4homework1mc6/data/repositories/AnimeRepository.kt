@@ -34,7 +34,7 @@ class AnimeRepository
     }
 
     fun getAnimeById(id: Int,onSuccess: (data: DataItem) -> Unit, onFailure: (error: String) -> Unit) {
-        detailApiService.getMangaBYId(id).enqueue(object : Callback<DetailResponse> {
+        detailApiService.getAnimeById(id).enqueue(object : Callback<DetailResponse> {
             override fun onResponse(p0: Call<DetailResponse>, p1: Response<DetailResponse>) {
                 if (p1.isSuccessful && p1.body() != null) {
                     p1.body()?.let {
