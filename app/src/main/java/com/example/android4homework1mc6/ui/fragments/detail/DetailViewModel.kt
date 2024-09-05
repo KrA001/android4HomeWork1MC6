@@ -40,8 +40,8 @@ class DetailViewModel @Inject constructor(
             id?.let {
                 animeRepository.getAnimeById(
                     id = id.toInt(),
-                    onSuccess = { _detailState.value = UiState.Success() },
-                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                    onSuccess = { _detailState.value = UiState.Success(it) },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException(it)) }
                 )
             }
         }
@@ -52,8 +52,8 @@ class DetailViewModel @Inject constructor(
             id?.let {
                 mangaRepository.getMangaById(
                     id = id.toInt(),
-                    onSuccess = { _detailState.value = UiState.Success() },
-                    onFailure = { _detailState.value = UiState.Error(RuntimeException()) }
+                    onSuccess = { _detailState.value = UiState.Success(it) },
+                    onFailure = { _detailState.value = UiState.Error(RuntimeException(it)) }
                 )
             }
         }

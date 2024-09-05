@@ -8,12 +8,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="700dp">
+        android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/iv_poster"
-            android:layout_width="match_parent"
-            android:layout_height="350dp">
+            android:layout_width="400dp"
+            android:layout_height="710dp"
+            android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/art_view"
