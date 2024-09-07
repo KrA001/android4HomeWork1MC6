@@ -1,7 +1,7 @@
 package com.example.android4homework1mc6.di
 
-import com.example.android4homework1mc6.data.remote.apiservices.DetailApiService
-import com.example.android4homework1mc6.data.remote.apiservices.KitsuApiService
+import com.example.android4homework1mc6.data.remote.apiservices.AnimeApiService
+import com.example.android4homework1mc6.data.remote.apiservices.MangaApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,13 +43,13 @@ object NetWorkModule {
 
     @Provides
     @Singleton
-    fun provideKitsuApiService(retrofit: Retrofit): KitsuApiService {
-        return retrofit.create(KitsuApiService::class.java)
+    fun provideMangaApiService(retrofit: Retrofit): MangaApiService {
+        return retrofit.create(MangaApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideDetailApiService(retrofit: Retrofit): DetailApiService {
-        return retrofit.create(DetailApiService::class.java)
+    fun provideAnimeApiService(retrofit: Retrofit): AnimeApiService {
+        return retrofit.create(AnimeApiService::class.java)
     }
 }

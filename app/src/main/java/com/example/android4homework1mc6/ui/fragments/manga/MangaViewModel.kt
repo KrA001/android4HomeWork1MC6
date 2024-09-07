@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.android4homework1mc6.data.remote.models.DataItem
 import com.example.android4homework1mc6.data.repositories.MangaRepository
-import com.example.android4homework1mc6.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,11 +13,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MangaViewModel @Inject constructor(
-    private val repositories: MangaRepository
+    private val repositories: MangaRepository,
 ) : ViewModel() {
 
-    private val _mangaData = MutableLiveData<UiState<List<DataItem>>>(UiState.Loading)
-    val mangaData: LiveData<UiState<List<DataItem>>>
+    private val _mangaData = MutableLiveData<List<DataItem>>()
+    val mangaData: LiveData<List<DataItem>>
         get() = _mangaData
 
     init {
@@ -26,11 +25,9 @@ class MangaViewModel @Inject constructor(
     }
 
     private fun fetchAnime() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repositories.getManga(
-                onSuccess = { _mangaData.value = UiState.Success(it) },
-                onFailure = { _mangaData.value = UiState.Error(RuntimeException(it)) }
-            )
+        viewModelScope.launch(Dispatchers.Main) {
+            val data = repositories.getManga().data
+            _mangaData.value = data
         }
     }
 }
