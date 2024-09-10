@@ -16,9 +16,12 @@ abstract class BaseFragment<VM: ViewModel, VB: ViewBinding>(@LayoutRes id: Int):
         super.onViewCreated(view, savedInstanceState)
         initialize()
         setupObserver()
+        subscribeToDetail()
     }
 
-    abstract fun initialize()
+    protected open fun initialize() {}
 
-    abstract fun setupObserver()
+    protected open fun setupObserver() {}
+
+    protected open fun subscribeToDetail() {}
 }

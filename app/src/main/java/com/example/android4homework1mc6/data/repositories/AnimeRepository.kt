@@ -5,8 +5,9 @@ import javax.inject.Inject
 
 class AnimeRepository @Inject constructor(
     private val animeApiService: AnimeApiService,
-) {
-    suspend fun getAnime() = animeApiService.getAnime()
+) : BaseRepository() {
 
-    suspend fun getAnimeById(id: Int) = animeApiService.getAnimeById(id)
+    fun getAnime() = fetchData { animeApiService.getAnime().data }
+
+    fun getAnimeById(id: Int) = fetchData { animeApiService.getAnimeById(id).data }
 }

@@ -5,8 +5,9 @@ import javax.inject.Inject
 
 class MangaRepository @Inject constructor(
     private val mangaApiService: MangaApiService,
-) {
-    suspend fun getManga() = mangaApiService.getManga()
+) : BaseRepository(){
 
-    suspend fun getMangaById(id: Int) = mangaApiService.getMangaById(id)
+    fun getManga() = fetchData { mangaApiService.getManga().data }
+
+    fun getMangaById(id: Int) = fetchData { mangaApiService.getMangaById(id).data }
 }
