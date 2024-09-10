@@ -13,6 +13,11 @@ lifecycle = "2.8.1"
 dagger = "2.51.1"
 retrofit = "2.11.0"
 okHttp = "5.0.0-alpha.14"
+binding-properties = "1.5.9"
+glideVersion = "4.16.0"
+pagingVersion = "3.2.1"
+navGraph = "2.7.7"
+swipeRefreshLayout = "1.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -23,6 +28,22 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+#SwipeRefreshLayout
+swipeRefreshLayout = {module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swipeRefreshLayout"}
+
+#navGraph
+navGraph = {module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navGraph" }
+navGraph-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navGraph" }
+
+# Paging
+paging = {module = "androidx.paging:paging-runtime", version.ref = "pagingVersion" }
+
+# Glide
+glide ={module = "com.github.bumptech.glide:glide",version.ref = "glideVersion"}
+
+# BindingPropertyDelegate
+binding-property-delegate = { group = "com.github.kirich1409", name ="viewbindingpropertydelegate-noreflection", version.ref = "binding-properties" }
 
 # Lifecycle
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle" }
@@ -47,3 +68,4 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 
 # Hilt
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "dagger" }
+

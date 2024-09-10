@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    // Safe args
-    id ("androidx.navigation.safeargs.kotlin")
-
     // Hilt
     alias(libs.plugins.hilt.android)
 
+    // Safe args
+    id("androidx.navigation.safeargs.kotlin")
+    
     // Kapt
     kotlin("kapt")
 }
@@ -87,20 +87,19 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //navGraph
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    //SwipeRefreshLayout
+    implementation(libs.swipeRefreshLayout)
 
-    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //navGraph
+    implementation(libs.navGraph)
+    implementation(libs.navGraph.ktx)
 
     // Paging
-    val paging_version = "3.2.1"
-    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation(libs.paging)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
 
-// Binding property delegate
-    implementation("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
+    // Binding property delegate
+    implementation(libs.binding.property.delegate)
 }

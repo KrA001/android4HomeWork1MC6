@@ -1,11 +1,5 @@
 package com.example.android4homework1mc6.ui.fragments.detail
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,53 +7,56 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.example.android4homework1mc6.R
 import com.example.android4homework1mc6.databinding.FragmentDetailBinding
-import com.example.android4homework1mc6.databinding.FragmentViewPagerBinding
-import com.example.android4homework1mc6.utils.UiState
-import com.google.android.material.snackbar.Snackbar
+import com.example.android4homework1mc6.ui.base.BaseFragment
+import com.example.android4homework1mc6.ui.fragments.anime.AnimeFragment
+import com.example.android4homework1mc6.ui.fragments.manga.MangaFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailFragment : Fragment(R.layout.fragment_detail) {
+class DetailFragment :
+    BaseFragment<DetailViewModel, FragmentDetailBinding>(R.layout.fragment_detail) {
 
-   private val binding by viewBinding(FragmentDetailBinding::bind)
-    private val viewModel by viewModels<DetailViewModel>()
+    override val viewModel: DetailViewModel by viewModels()
+    override val binding by viewBinding(FragmentDetailBinding::bind)
+
     private val args by navArgs<DetailFragmentArgs>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        args.id?.let { id ->
-            viewModel.setId(id)
-        }
-        subscribeToDetail(view)
-        setupListeners()
+    override fun initialize() {
+
     }
 
-    private fun subscribeToDetail(view: View) {
-        viewModel.detailState.observe(viewLifecycleOwner) { uiState ->
-            when (uiState) {
-                is UiState.Error -> uiState.message?.let {
-                    Snackbar.make(
-                        requireView(), it, Snackbar.LENGTH_SHORT
-                    ).show()
-                }
+    override fun setupObserver() {
+        binding.tvBack.setOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
 
-                UiState.Loading -> binding.progressBar.isVisible = true
-
-                is UiState.Success -> {
-                    binding.progressBar.isVisible = false
-                    uiState.data?.let {
+    override fun subscribeToDetail() {
+        val id = args.id.toInt()
+        when (val name = args.name) {
+            AnimeFragment.ANIME_NAME -> {
+                viewModel.getAnimeById(id).observe(viewLifecycleOwner) { data ->
+                    data?.let {
                         it.attributes.posterImage.large.let { posterImage ->
                             Glide.with(binding.artView).load(posterImage).into(binding.artView)
                         }
                     }
                 }
             }
-        }
-    }
 
-    private fun setupListeners() {
-        binding.tvBack.setOnClickListener {
-            findNavController().navigateUp()
+            MangaFragment.MANGA_NAME -> {
+                viewModel.getMangaById(id).observe(viewLifecycleOwner) { data ->
+                    data?.let {
+                        it.attributes.posterImage.large.let { posterImage ->
+                            Glide.with(binding.artView).load(posterImage).into(binding.artView)
+                        }
+                    }
+                }
+            }
+
+            else -> {
+                throw RuntimeException("Unknown fragmentName $name")
+            }
         }
     }
 }
