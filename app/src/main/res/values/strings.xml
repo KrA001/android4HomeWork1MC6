@@ -17,4 +17,8 @@
     <string name="rank_30">Rank #30</string>
     <string name="kitsy_score">Kitsy Score</string>
     <string name="eight_nine">89%</string>
+    <string name="goInto">Войти</string>
+    <string name="Password">Пароль</string>
+    <string name="Login">Логин</string>
+    <string name="authorization">Авторизация</string>
 </resources>
